@@ -13,7 +13,6 @@ from wagtail_localize.fields import TranslatableField, SynchronizedField
 from taggit.models import TaggedItemBase
 from modelcluster.fields import ParentalKey
 from modelcluster.contrib.taggit import ClusterTaggableManager
-from wagtail_localize.fields import SynchronizedField
 
 from .modular import MiniSiteNameSpace
 from .primary import PrimaryPage
