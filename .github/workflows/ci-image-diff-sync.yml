@@ -102,7 +102,12 @@ jobs:
         python compare.py --update -l ../test/urls.txt -g main -w 500,800,1000,1400
         deactivate
 
-    - name: Uploading baseline
+    - name: Uploading screenshots baseline
       run: |
         cd ci-image-diff
         aws s3 sync ./diffs/main s3://foundation-mozilla-org-visual-ci/baseline --acl public-read --delete
+
+    - name: Uploading test database snapshot
+      run: |
+        pg_dump -F c $DATABASE_URL > test.db.dump
+        aws s3 sync test.db.dump s3://foundation-mozilla-org-visual-ci/baseline/test.db.dump --delete
